@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* CUTIFIED PALETTE */
+  --bg-color: #FFF9F2;
+  --text-main: #4A4238;
+  --text-muted: #9CA3AF;
+  --card-bg: rgba(255, 255, 255, 0.7); 
+  --card-border: rgba(255, 255, 255, 0.9);
+  --accent: #FFB5A7;
+  --accent-secondary: #FCD5CE;
+  --shadow-color: rgba(255, 181, 167, 0.25);
+}
+
+[data-theme='night'] {
+  --bg-color: #231F20;
+  --text-main: #F4EBE8;
+  --text-muted: #A8A29E;
+  --card-bg: rgba(30, 27, 29, 0.75);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --accent: #E09F3E;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease;
+}
+
+/* RESPONSIVE ANIMATED BACKGROUND BLOBS */
+.blob-cont {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px); /* Reduced blur for mobile performance */
+  opacity: 0.6;
+  animation: float 20s infinite alternate;
+}
+
+.blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: #FFC8DD; animation-delay: 0s; }
+.blob-2 { bottom: -10%; right: -10%; width: 60vw; height: 60vw; background: #BDE0FE; animation-delay: -5s; }
+.blob-3 { top: 40%; left: 40%; width: 40vw; height: 40vw; background: #FDFD96; animation-delay: -10s; opacity: 0.4; }
+
+/* Mobile adjustments for blobs */
+@media (max-width: 768px) {
+  .blob { filter: blur(40px); opacity: 0.5; }
+  .blob-1 { width: 80vw; height: 80vw; }
+  .blob-2 { width: 90vw; height: 90vw; }
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(30px, 50px) scale(1.1); }
+}
+
+/* CALENDAR TWEAKS */
+.react-calendar {
+  background: transparent !important;
+  border: none !important;
+  font-family: var(--font-sans) !important;
+  width: 100% !important;
+}
+
+/* Make calendar tiles smaller on mobile if needed */
+.react-calendar__tile {
+  height: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-muted) !important;
+  border-radius: 18px !important;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.react-calendar__tile--active {
+  background: var(--accent) !important;
+  color: white !important;
+  box-shadow: 0 8px 16px var(--shadow-color);
+  transform: scale(1.1);
+}
+
+.react-calendar__tile:enabled:hover {
+  background-color: white !important;
+  transform: scale(1.1);
+}
+
+/* Navigation Buttons */
+.react-calendar__navigation button {
+  color: var(--text-main) !important;
+  font-size: 1.2rem;
+  font-weight: 800;
+  background: rgba(255,255,255,0.5);
+  border-radius: 14px;
+  margin: 0 2px;
+}
