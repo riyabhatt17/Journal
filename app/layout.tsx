@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const lora = Lora({ subsets: ["latin"], variable: "--font-serif" }); // Configure Lora
 
 export const metadata: Metadata = {
-  title: "Warm Journal",
+  title: "Journal Pages",
   description: "A cozy place for your thoughts",
 };
 
